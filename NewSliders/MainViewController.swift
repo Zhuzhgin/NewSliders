@@ -126,14 +126,15 @@ extension MainViewController: UITextFieldDelegate {
         view.endEditing(true)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField {
-        case redValueTF : greenValueTF.becomeFirstResponder()
-        case greenValueTF: blueValueTF.becomeFirstResponder()
-        default:
-            view.endEditing(true)
-        }
+        textField.returnKeyType = .done
+        view.endEditing(true)
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        textField.returnKeyType = .next
+    }
+    
 }
 
     extension MainViewController {
